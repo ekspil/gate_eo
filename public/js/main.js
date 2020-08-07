@@ -24,7 +24,12 @@ let app = new Vue({
             const params = this.settingsDrive[index]
             console.log(params)
             try {
-                const answer = await axios.post('http://'+server+'/api/v1/setDriveSettings', params)
+                const answer = await axios({
+                    method: 'post',
+                    url: 'http://'+server+'/api/v1/setDriveSettings',
+                    data: params
+                })
+
                 console.log(answer)
             } catch (e) {
                 throw new Error(e)

@@ -16,12 +16,21 @@ let app = new Vue({
 
     },
     data: {
-        settingsDrive: []
+        settingsDrive: [],
+        settingsDriveNew: {
+            name: "",
+            ip: "",
+            number: null,
+            prop: ""
+        }
     },
     computed: {},
     methods: {
         setDriveSettings: async function(index){
-            const params = this.settingsDrive[index]
+            let params = this.settingsDrive[index]
+            if(index === null){
+                params = this.settingsDriveNew
+            }
             try {
                 const answer = await axios({
                     method: 'post',

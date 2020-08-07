@@ -46,6 +46,13 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <tr>
+                        <td><input class="uk-input" type="input" v-model="settingsDriveNew.name"></td>
+                        <td><input class="uk-input" type="input" v-model="settingsDriveNew.number"></td>
+                        <td><input class="uk-input" type="input" v-model="settingsDriveNew.ip"></td>
+                        <td><input class="uk-input" type="input" v-model="settingsDriveNew.prop"></td>
+                        <td><button class="uk-button uk-button-default" type="button" @click.prevent="setDriveSettings(null)">Save</button></td>
+                    </tr>
                     <tr v-for="(item, index) in settingsDrive">
                         <td>{{item.name}}</td>
                         <td>{{item.number}}</td>

@@ -25,7 +25,22 @@ restorants[13] = "10.9.0.16:3000";
 restorants[14] = "10.11.0.16:3000";
 restorants[15] = "10.14.0.19:3000";
 restorants[16] = "192.168.15.95:3006";
+async function init() {
+  let settings = await service.getDriveSettings()
+  for(let item of settings){
 
+    restorants[item.number] = item.ip
+  }
+  return true
+}
+init()
+    .then((value)=>{
+      console.log("Init Success: "+value)
+      console.log(restorants)
+    })
+    .catch(err => {
+      console.log(err)
+    })
 // for(let i in restorants){
 //
 //   let num = restorants[i].split(".")[1]

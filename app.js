@@ -1,6 +1,8 @@
 ﻿var express = require('express');
 const fetch = require('node-fetch')
 var app = express();
+const apiRouter = require("./routes/index")
+app.use("/api/v1", apiRouter)
 var http = require('http');
 var iconv = require('iconv-lite');
 var restorants = [];

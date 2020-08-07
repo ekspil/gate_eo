@@ -3,6 +3,7 @@ const fetch = require('node-fetch')
 var app = express();
 const apiRouter = require("./routes/index")
 app.use("/api/v1", apiRouter)
+const service = require("./services")
 var http = require('http');
 var iconv = require('iconv-lite');
 var restorants = [];
@@ -23,6 +24,32 @@ restorants[13] = "10.9.0.16:3000";
 restorants[14] = "10.11.0.16:3000";
 restorants[15] = "10.14.0.19:3000";
 restorants[16] = "192.168.15.95:3006";
+
+for(let i in restorants){
+
+  let num = restorants[i].split(".")[1]
+  if(num == "168") {
+    num = "1"
+  }
+  let prop = ""
+
+  let name = "РБ "+num
+  if(i == 16){
+    prop = "drive"
+    name += " Авто"
+  }
+  let data = {
+    name,
+    ip: restorants[i],
+    prop,
+    number: Number(i)
+  }
+  service.setDriveSettings(data)
+  console.log(data)
+
+}
+
+
 var sendStation = [];
 sendStation[0] = 0;
 sendStation[1] = 1;

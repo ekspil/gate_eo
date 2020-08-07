@@ -19,6 +19,14 @@ const setDriveSettings = async function(data){
         await sett.save()
         return true
     }
+    else {
+        const sett = {}
+        sett.name = data.name
+        sett.ip = data.ip
+        sett.prop = data.prop
+        sett.number = data.number
+        await model.SettingsDrive.create(sett)
+    }
 
     return false
 

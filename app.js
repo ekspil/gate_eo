@@ -2,6 +2,7 @@
 const fetch = require('node-fetch')
 var app = express();
 const apiRouter = require("./routes/index")
+app.use(express.json())
 app.use("/api/v1", apiRouter)
 const service = require("./services")
 var http = require('http');

@@ -22,13 +22,12 @@ let app = new Vue({
     methods: {
         setDriveSettings: async function(index){
             const params = this.settingsDrive[index]
-            console.log(params)
             try {
                 const answer = await axios({
                     method: 'post',
                     url: 'http://'+server+'/api/v1/setDriveSettings',
                     headers: { 'content-type': 'application/json' },
-                    data: JSON.stringify(params)
+                    data: params
                 })
 
                 console.log(answer)

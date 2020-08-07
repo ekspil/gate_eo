@@ -21,8 +21,6 @@ router.get("/getDriveSettings", async function(req, res) {
 
 router.post("/setDriveSettings", async function(req, res) {
     try {
-        const json = await req.json
-        console.log(json)
         await service.setDriveSettings(req.body)
         res.sendStatus(200)
     }

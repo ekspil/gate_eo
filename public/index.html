@@ -34,7 +34,7 @@
                         <td>{{item.number}}</td>
                         <td>{{item.ip}}</td>
                         <td><input class="uk-input" type="input" v-model="settingsDrive[index].prop"></td>
-                        <td><button class="uk-button uk-button-default" type="button">Save</button></td>
+                        <td><button class="uk-button uk-button-default" type="button" @click.prevent="setDriveSettings(index)">Save</button></td>
                     </tr>
                     </tbody>
                 </table>

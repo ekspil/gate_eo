@@ -19,5 +19,15 @@ let app = new Vue({
         settingsDrive: []
     },
     computed: {},
-    methods: {},
+    methods: {
+        setDriveSettings: async function(index){
+            const params = JSON.stringify(this.settingsDrive[index])
+            try {
+                const { data } = await axios.post('http://'+server+'/api/v1/setDriveSettings', params)
+                console.log(data)
+            } catch (e) {
+                throw new Error(e)
+            }
+        }
+    },
 })

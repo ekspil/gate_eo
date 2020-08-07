@@ -27,7 +27,12 @@ let app = new Vue({
                 const answer = await axios({
                     method: 'post',
                     url: 'http://'+server+'/api/v1/setDriveSettings',
-                    data: params
+                    data: {
+                        id: params.id,
+                        name: params.name,
+                        number: params.number,
+                        prop: params.prop
+                    }
                 })
 
                 console.log(answer)

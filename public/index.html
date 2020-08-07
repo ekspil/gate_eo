@@ -21,33 +21,19 @@
                 <table class="uk-table uk-table-small uk-table-divider">
                     <thead>
                     <tr>
-                        <th class="uk-width-small">Номер</th>
-                        <th>Название</th>
+                        <th class="uk-width-small">Название</th>
+                        <th>ID доставки</th>
                         <th>IP адрес</th>
                         <th>Тип</th>
                         <th> </th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>12</td>
-                        <td>Набережная</td>
-                        <td>192.168.15.95</td>
-                        <td>drive</td>
-                        <td><button class="uk-button uk-button-default" type="button">Save</button></td>
-                    </tr>
-                    <tr>
-                        <td>12</td>
-                        <td>Набережная</td>
-                        <td>192.168.15.95</td>
-                        <td>drive</td>
-                        <td><button class="uk-button uk-button-default" type="button">Save</button></td>
-                    </tr>
-                    <tr>
-                        <td>12</td>
-                        <td>Набережная</td>
-                        <td>192.168.15.95</td>
-                        <td>drive</td>
+                    <tr v-for="(item, index) in settingsDrive">
+                        <td>{{item.name}} {{index}}</td>
+                        <td>{{item.number}}</td>
+                        <td>{{item.ip}}</td>
+                        <td>{{item.prop}}</td>
                         <td><button class="uk-button uk-button-default" type="button">Save</button></td>
                     </tr>
                     </tbody>

@@ -32,6 +32,7 @@ sendStation[6] = 5;
 sendStation[7] = 7;
 var port = 3003;
 http.Server(app).listen(port);
+app.use(express.static('public'));
 const https = require('https');
 
 var secret = 'asd123zxc';

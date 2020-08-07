@@ -216,12 +216,16 @@ app.get('/updateorder', async function(req,res){
     const result = await fetch('https://delivery.rb24.ru/common_api/order/'+orderid+'?apikey=ZmFkMTlhNzQyMGRhMGI4N2NlOTQwZTI0MmQ3OTk1MTU3NjIwMmRkMA', {
       method: "GET"
     })
-    console.log(2)
     const json = await result.json()
+    const settings = await service.getDriveSettings()
+    const restoran = settings.find(i => i.number == json.workshop_id)
+    if(restoran.prop != "drive") {
+      res.sendStatus(200)
+      return
+    }
     await fetch(`http://${restorants[json.workshop_id]}/take_out/?order=${orderid}&comment=${encodeURI(json.comment)}`, {
       method: "GET"
     })
-    console.log(4)
     res.sendStatus(200)
   }
   catch (e) {

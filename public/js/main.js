@@ -32,14 +32,14 @@ let app = new Vue({
                 params = this.settingsDriveNew
             }
             try {
-                const answer = await axios({
+                await axios({
                     method: 'post',
                     url: 'http://'+server+'/api/v1/setDriveSettings',
                     headers: { 'content-type': 'application/json' },
                     data: params
                 })
 
-                console.log(answer)
+                location.reload()
             } catch (e) {
                 throw new Error(e)
             }

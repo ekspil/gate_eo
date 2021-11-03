@@ -54,6 +54,8 @@ ${i.quantity} - ${i.name}`
 
 text += `
 Оплачен: Да
+Тип оплаты: Безнал
+Сумма: ${data.sum}
 Комментарий: ${data.comment}`
         return text
     }

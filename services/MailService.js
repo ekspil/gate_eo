@@ -22,7 +22,7 @@ class MailService {
         try {
             await this.transporter.sendMail({
                 from: `order@infiniti-group.ru`, // sender address
-                to: "ekspil@yandex.ru", // list of receivers
+                to: "parse@darall.pro", // list of receivers
                 subject, // Subject line
                 text
             })

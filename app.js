@@ -1,4 +1,6 @@
-﻿var express = require('express');
+﻿
+require("dotenv").config()
+var express = require('express');
 const fetch = require('node-fetch')
 var app = express();
 const apiRouter = require("./routes/index")
@@ -7,7 +9,8 @@ app.use("/api/v1", apiRouter)
 const service = require("./services")
 var http = require('http');
 var iconv = require('iconv-lite');
-var restorants = [];
+global.restorants = [];
+global.adresses = [];
 restorants[0] = "192.168.15.95:3006";
 restorants[1] = "192.168.15.166:4000";
 restorants[2] = "10.12.0.23:3000";
@@ -25,18 +28,34 @@ restorants[13] = "10.9.0.16:3000";
 restorants[14] = "10.11.0.16:3000";
 restorants[15] = "10.14.0.19:3000";
 restorants[16] = "192.168.15.95:3006";
-async function init() {
-  let settings = await service.getDriveSettings()
-  for(let item of settings){
 
-    restorants[item.number] = item.ip
+//service require
+const MailService = require("./services/MailService")
+
+
+//service init
+const mailService = new MailService()
+
+
+async function init() {
+  try{
+    let settings = await service.getDriveSettings()
+    for(let item of settings){
+
+      restorants[item.number] = item.ip
+      adresses[item.number] = item.address
+    }
+    return true
   }
-  return true
+  catch (e) {
+    console.log(e)
+  }
 }
 init()
     .then((value)=>{
       console.log("Init Success: "+value)
       console.log(restorants)
+      console.log(adresses)
     })
     .catch(err => {
       console.log(err)
@@ -284,7 +303,7 @@ https.get('https://delivery.rb24.ru/common_api/order/'+orderid+'?apikey=ZmFkMTlh
   let rawData = [];
   var newhtml = '';
   ress.on('data', (chunk) => { rawData.push(chunk); });
-  ress.on('end', () => {
+  ress.on('end', async () => {
     try {
       var decodedBody = iconv.decode(Buffer.concat(rawData), 'utf8');
       const parsedData = JSON.parse(decodedBody);
@@ -353,7 +372,15 @@ https.get('https://delivery.rb24.ru/common_api/order/'+orderid+'?apikey=ZmFkMTlh
 
       }
 
+
       setTimeout(sendDataPaid, 2000, orderid, typeNum, 0, parsedData.workshop_id, parsedData.code, parsedData.client_name);
+
+      if(parsedData.address && parsedData.delivery_time_local){
+        const text = mailService.parseDataToTextEmail(parsedData)
+        await mailService.sendEmailDarall("РоялБургер Заказ №"+orderid, text)
+
+      }
+
 
       var jsonData = {};
         jsonData.error = "0";

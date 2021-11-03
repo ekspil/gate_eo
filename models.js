@@ -22,6 +22,9 @@ const SettingsDrive = sequelize.define('settings_drive', {
         type: Sequelize.DataTypes.STRING
         // allowNull defaults to true
     },
+    address: {
+        type: Sequelize.DataTypes.STRING
+    },
     prop: {
         type: Sequelize.DataTypes.STRING
         // allowNull defaults to true
@@ -31,7 +34,7 @@ const SettingsDrive = sequelize.define('settings_drive', {
 });
 
 
-sequelize.sync()
+sequelize.sync({alter: true})
 //{ force: true }
 
 module.exports = {

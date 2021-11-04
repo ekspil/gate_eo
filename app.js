@@ -375,7 +375,7 @@ https.get('https://delivery.rb24.ru/common_api/order/'+orderid+'?apikey=ZmFkMTlh
 
       setTimeout(sendDataPaid, 2000, orderid, typeNum, 0, parsedData.workshop_id, parsedData.code, parsedData.client_name);
 
-      if(parsedData.address && parsedData.delivery_time_local){
+      if(parsedData.address && parsedData.delivery_time_local && typeNum === 3){
         const text = mailService.parseDataToTextEmail(parsedData)
         await mailService.sendEmailDarall("РоялБургер Заказ №"+orderid, text)
 

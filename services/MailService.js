@@ -43,7 +43,7 @@ class MailService {
 Время доставки: ${new Date(data.delivery_time_local).toLocaleString()}
 Имя клиента: ${data.client_name}
 Телефон клиента: ${data.client_phone}
-Адрес откуда: ${adresses[data.workshop_id]}
+Адрес откуда: ${restorantsInfo[data.workshop_id].address}
 Адрес куда: ${data.address.city + " " + data.address.street + " " + data.address.building + " - " + data.address.flat + " , подъезд: " + data.address.entrance + " , этаж: " + data.address.floor}
 Состав: `
 

@@ -21,7 +21,9 @@ let app = new Vue({
             name: "",
             ip: "",
             number: null,
-            prop: ""
+            prop: "",
+            address: null,
+            darall: false,
         }
     },
     computed: {},

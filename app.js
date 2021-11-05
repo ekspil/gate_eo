@@ -10,7 +10,7 @@ const service = require("./services")
 var http = require('http');
 var iconv = require('iconv-lite');
 global.restorants = [];
-global.adresses = [];
+global.restorantsInfo = [];
 restorants[0] = "192.168.15.95:3006";
 restorants[1] = "192.168.15.166:4000";
 restorants[2] = "10.12.0.23:3000";
@@ -43,8 +43,12 @@ async function init() {
     for(let item of settings){
 
       restorants[item.number] = item.ip
-      adresses[item.number] = item.address
+      restorantsInfo[item.number] = {
+        address: item.address,
+        darall: item.darall
+      }
     }
+
     return true
   }
   catch (e) {
@@ -55,7 +59,7 @@ init()
     .then((value)=>{
       console.log("Init Success: "+value)
       console.log(restorants)
-      console.log(adresses)
+      console.log(restorantsInfo)
     })
     .catch(err => {
       console.log(err)
@@ -375,7 +379,7 @@ https.get('https://delivery.rb24.ru/common_api/order/'+orderid+'?apikey=ZmFkMTlh
 
       setTimeout(sendDataPaid, 2000, orderid, typeNum, 0, parsedData.workshop_id, parsedData.code, parsedData.client_name);
 
-      if(parsedData.address && parsedData.delivery_time_local && typeNum === 3){
+      if(restorantsInfo[parsedData.workshop_id] && restorantsInfo[parsedData.workshop_id].darall &&  parsedData.address && parsedData.delivery_time_local && typeNum === 3){
         const text = mailService.parseDataToTextEmail(parsedData)
         await mailService.sendEmailDarall("РоялБургер Заказ №"+orderid, text)
 

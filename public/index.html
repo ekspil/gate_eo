@@ -43,6 +43,7 @@
                         <th>IP адрес</th>
                         <th>Тип(параметр)</th>
                         <th>Адрес ресторана</th>
+                        <th>Darall</th>
                         <th> </th>
                     </tr>
                     </thead>
@@ -53,6 +54,7 @@
                         <td><input class="uk-input" type="input" v-model="settingsDriveNew.ip"></td>
                         <td><input class="uk-input" type="input" v-model="settingsDriveNew.prop"></td>
                         <td><input class="uk-input" type="input" v-model="settingsDriveNew.address"></td>
+                        <td><input class="uk-checkbox" type="checkbox" v-model="settingsDriveNew.darall"></td>
                         <td><button class="uk-button uk-button-default" type="button" @click.prevent="setDriveSettings(null)">Save</button></td>
                     </tr>
                     <tr v-for="(item, index) in settingsDrive">
@@ -61,6 +63,7 @@
                         <td><input class="uk-input" type="input" v-model="settingsDrive[index].ip"></td>
                         <td><input class="uk-input" type="input" v-model="settingsDrive[index].prop"></td>
                         <td><input class="uk-input" type="input" v-model="settingsDrive[index].address"></td>
+                        <td><input class="uk-checkbox" type="checkbox" v-model="settingsDrive[index].darall"></td>
                         <td><button class="uk-button uk-button-default" type="button" @click.prevent="setDriveSettings(index)">Save</button></td>
                     </tr>
                     </tbody>

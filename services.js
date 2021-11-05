@@ -17,6 +17,7 @@ const setDriveSettings = async function(data){
         sett.prop = data.prop
         sett.number = data.number
         sett.address = data.address
+        sett.darall = data.darall
         await sett.save()
     }
     else {
@@ -26,6 +27,7 @@ const setDriveSettings = async function(data){
         sett.prop = data.prop
         sett.number = data.number
         sett.address = data.address
+        sett.darall = data.darall
         await model.SettingsDrive.create(sett)
     }
 
@@ -33,9 +35,11 @@ const setDriveSettings = async function(data){
     for(let item of settings){
 
         restorants[item.number] = item.ip
-        adresses[item.number] = item.address
+        restorantsInfo[item.number] = {
+            address: item.address,
+            darall: item.darall
+        }
     }
-    console.log(restorants)
 
     return true
 

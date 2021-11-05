@@ -25,6 +25,9 @@ const SettingsDrive = sequelize.define('settings_drive', {
     address: {
         type: Sequelize.DataTypes.STRING
     },
+    darall: {
+        type: Sequelize.DataTypes.BOOLEAN
+    },
     prop: {
         type: Sequelize.DataTypes.STRING
         // allowNull defaults to true

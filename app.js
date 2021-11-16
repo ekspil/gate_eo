@@ -379,7 +379,7 @@ https.get('https://delivery.rb24.ru/common_api/order/'+orderid+'?apikey=ZmFkMTlh
 
       setTimeout(sendDataPaid, 2000, orderid, typeNum, 0, parsedData.workshop_id, parsedData.code, parsedData.client_name);
 
-      if(restorantsInfo[parsedData.workshop_id] && restorantsInfo[parsedData.workshop_id].darall &&  parsedData.address && parsedData.delivery_time_local && typeNum === 3){
+      if(restorantsInfo[parsedData.workshop_id] && restorantsInfo[parsedData.workshop_id].darall &&  parsedData.address &&  parsedData.address.city &&  parsedData.address.street && parsedData.delivery_time_local && typeNum === 3){
         const text = mailService.parseDataToTextEmail(parsedData)
         await mailService.sendEmailDarall("РоялБургер Заказ №"+orderid, text)
 
